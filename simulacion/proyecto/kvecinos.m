@@ -1,43 +1,30 @@
-function [ ytest, yestimado] = kvecinos(direccion_bd,k)
-    archivos = dir(direccion_bd);
+function [ ytest, yestimado] = kvecinos(direccion_bd, k)
 
-    xtest_matriz = zeros(5,32,5);
+    archivos = listar_archivos(direccion_bd);
+
     ytest = zeros(25,1);
     yestimado = zeros(25,1);
-    xtrain_completa = zeros(225,32);
-    xtest_completa = zeros(25,32);
-    genero_completa= zeros(225,1);
-    contador_genero = 1;
-    indice = 1;
-    indice_ytest = 1;
-    indice_xtrain = 1;
+    % 45 canciones por 5 generos = 225
+    xtrain_completa = zeros(225, 32);
+    xtest_completa = zeros(25, 32);
+    genero_completa= zeros(225, 1);
 
     for i = 1 : length(archivos)
         archivo = archivos(i).name;
-        if ~strcmp(archivo, '.') && ~strcmp(archivo, '..')
-            strcat(direccion_bd, archivo)
 
-            M = dlmread(strcat(direccion_bd, archivo));
+	M = dlmread(strcat(direccion_bd, archivo));
 
-            [media, cov, xtest, xtrain] = obtenerXtest(M);
+	[xtrain, xtest] = obtenerXtrainXtest(M);
 
-%             xtest_matriz(:,:,indice) = xtest;
-%             xtrain_matriz(:,:,indice)= xtrain;
+	for j = 1:5
+	    ytest((i-1)*5 + j, 1) = i;
+	    xtest_completa((i-1)*5 + j, 1) = xtest(j)
+	end
 
-            for j = 1:5
-                xtest_completa(indice_ytest,:) = xtest(j,:);
-                ytest(indice_ytest) = indice;
-            end
-
-            for j = 1:45
-                xtrain_completa(indice_xtrain,:) = xtrain(j,:);
-                genero_completa(contador_genero) = indice;
-                contador_genero = contador_genero + 1;
-                indice_xtrain = indice_xtrain + 1;
-            end
-
-            indice = indice +1;
-        end
+	for j = 1:45
+	    xtrain_completa((i-1)*45 + j,:) = xtrain(j,:);
+	    genero_completa((i-1)*45 + j) = i;
+	end
     end
 
     %Se ejecuta el metodo k vecinos
@@ -45,18 +32,18 @@ function [ ytest, yestimado] = kvecinos(direccion_bd,k)
     distancias = zeros(225,1);
     contador = 1;
 
+    % 25 canciones de prueba.
     for i = 1:25
         entrada = xtest_completa(i,:);
 
         for l = 1:225
             muestra = xtrain_completa(l,:);
-            gen = genero_completa(l);
-            % entrada = xtest_matriz(m,:,i);
+            genero = genero_completa(l);
             distancias(l)=sqrt(sum((muestra-entrada).^2));
             for j = 1:k
                 if distancias(l) < Kvec(j,1)
                     Kvec(j,1) = distancias(l);
-                    Kvec(j,2) = gen;
+                    Kvec(j,2) = genero;
                     % break
                 end
             end
@@ -68,4 +55,3 @@ function [ ytest, yestimado] = kvecinos(direccion_bd,k)
         contador = contador + 1;
     end
 end
-
