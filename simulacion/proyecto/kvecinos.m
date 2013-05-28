@@ -1,4 +1,4 @@
-function [ ytest,yestimado] = kvecinos(direccion_bd,k)
+function [ ytest, yestimado] = kvecinos(direccion_bd,k)
     archivos = dir(direccion_bd);
 
     xtest_matriz = zeros(5,32,5);
@@ -20,7 +20,7 @@ function [ ytest,yestimado] = kvecinos(direccion_bd,k)
             M = dlmread(strcat(direccion_bd, archivo));
 
             [media, cov, xtest, xtrain] = obtenerXtest(M);
-            
+
 %             xtest_matriz(:,:,indice) = xtest;
 %             xtrain_matriz(:,:,indice)= xtrain;
 
@@ -37,9 +37,9 @@ function [ ytest,yestimado] = kvecinos(direccion_bd,k)
             end
 
             indice = indice +1;
-        end       
+        end
     end
-         
+
     %Se ejecuta el metodo k vecinos
     Kvec = [100*ones(k,1),zeros(k,1)];
     distancias = zeros(225,1);

@@ -6,15 +6,15 @@ function [ fold , Efi] = fold( direccion_bd,h,k)
     media3 = zeros(10,1);
 
     for i=1:10
-	[Ytest,Yestimado] = gauss(direccion_bd);
-	[Conf1,efi1] = MatrizConfusion(Ytest,Yestimado);
-	media1(i) = efi1;
-	[Ytest,Yestimado] = kvecinos(direccion_bd,k);
-	[Conf2,efi2] = MatrizConfusion(Ytest,Yestimado);
-	media2(i) = efi2;
-	[Ytest,Yestimado] = Parzen(direccion_bd,h);    
-	[Conf3,efi3] = MatrizConfusion(Ytest,Yestimado);
-	media3(i) = efi3;
+        [Ytest, Yestimado] = gauss(direccion_bd);
+        [Conf1,efi1] = MatrizConfusion(Ytest,Yestimado);
+        media1(i) = efi1;
+        [Ytest,Yestimado] = kvecinos(direccion_bd,k);
+        [Conf2,efi2] = MatrizConfusion(Ytest,Yestimado);
+        media2(i) = efi2;
+        [Ytest,Yestimado] = Parzen(direccion_bd,h);
+        [Conf3,efi3] = MatrizConfusion(Ytest,Yestimado);
+        media3(i) = efi3;
     end
 
 
