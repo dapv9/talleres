@@ -1,4 +1,4 @@
-function [ ytest,yestimado] = kvecinos(direccion_bd,k)
+function [ yestimado, ytest] = kvecinos(direccion_bd,k)
     archivos = listar_archivos(direccion_bd);
 
     ytest = zeros(25,1);

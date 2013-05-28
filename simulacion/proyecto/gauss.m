@@ -13,6 +13,7 @@ function [yestimado, ytest] = gauss( direccion_bd )
 
     for i = 1 : length(archivos)
         archivo = archivos(i).name;
+        strcat(direccion_bd, archivo)
 
         % leemos la matriz "i" de la base de datos.
         M = dlmread(strcat(direccion_bd, archivo));
