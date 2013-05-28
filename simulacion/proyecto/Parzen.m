@@ -1,5 +1,5 @@
 function [yestimado, ytest] = Parzen(direccion_bd,h)
- archivos = dir(direccion_bd);
+    archivos = dir(direccion_bd);
 
     xtest_matriz = zeros(5,32,5);
     ytest = zeros(25,1);
