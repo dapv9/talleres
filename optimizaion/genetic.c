@@ -9,6 +9,9 @@
 #define N_CROSS		10
 #define N_CROSS_D	10.0
 
+#define debug()		printf("%d - %s\n", __LINE__, __FILE__)
+#define print_farr(X)	for(i = 0; i < N; i++) printf("%f\n", (X)[i])
+
 double drand48();
 
 typedef struct __pair__f__
@@ -51,7 +54,7 @@ double cross(double n1, double n2, int cross)
     return (((int)(n1*N_CROSS) & ~a) | ((int)(n2*N_CROSS) & a)) / N_CROSS_D;
 }
 
-void new_population(float **popul_x, float **popul_y, float * prob)
+void new_population(float * popul_x, float * popul_y, float * prob)
 {
     int i, i_max = 0;
     int n_popul[4];
@@ -72,8 +75,8 @@ void new_population(float **popul_x, float **popul_y, float * prob)
 
     for(i = 0; i < N; i++)
     {
-        n_popul_x[i] = *popul_x[n_popul[i]];
-        n_popul_y[i] = *popul_y[n_popul[i]];
+        n_popul_x[i] = popul_x[n_popul[i]];
+        n_popul_y[i] = popul_y[n_popul[i]];
     }
 
     pair_i mating_order[4] = {0, 1, 1, 2, 2, 3, 0, 3};
@@ -87,8 +90,8 @@ void new_population(float **popul_x, float **popul_y, float * prob)
 
     for(i = 0; i < N; i++)
     {
-        *popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
-        *popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
+        popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
+        popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
     }
 }
 
@@ -122,7 +125,7 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
         for(i = 0; i < N; i++)
             p[i] /= p_total;
 
-        new_population((float**)&popul_x, (float**)&popul_y, p);
+        new_population(popul_x, popul_y, p);
     }
 
     for(i = 0 ; i < N; i++)
