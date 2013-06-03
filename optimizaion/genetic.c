@@ -11,11 +11,17 @@
 
 double drand48();
 
-typedef struct __pair__
+typedef struct __pair__f__
 {
     float n1;
     float n2;
-} pair;
+} pair_f;
+
+typedef struct __pair__i__
+{
+    int n1;
+    int n2;
+} pair_i;
 
 float f_p(float x, float y)
 {
@@ -48,7 +54,7 @@ double cross(double n1, double n2, int cross)
 float new_population(float **popul_x, float **popul_y, float * prob)
 {
     int i, i_max = 0;
-    float n_popul[4];
+    int n_popul[4];
     float n_popul_x[4];
     float n_popul_y[4];
     float prob_cpy[4];
@@ -70,14 +76,10 @@ float new_population(float **popul_x, float **popul_y, float * prob)
         n_popul_y[i] = *popul_y[n_popul[i]];
     }
 
-    pair mating_order[4];
-    aparaemiento_order[0] = {0, 1};
-    aparaemiento_order[1] = {1, 2};
-    aparaemiento_order[2] = {2, 3};
-    aparaemiento_order[3] = {0, 3};
+    pair_i mating_order[4] = {0, 1, 1, 2, 2, 3, 0, 3};
 
     int o_cross[4];
-    srand();
+    srand(time(NULL));
     o_cross[0] = rand() % 32;
     o_cross[1] = rand() % 32;
     o_cross[2] = rand() % 32;
@@ -85,12 +87,12 @@ float new_population(float **popul_x, float **popul_y, float * prob)
 
     for(i = 0; i < N; i++)
     {
-	*popul_x[i] = cross(n_popul_x[aparaemiento_order[i].n1], n_popul_x[aparaemiento_order[i].n2], o_cross[i]);
-	*popul_y[i] = cross(n_popul_y[aparaemiento_order[i].n1], n_popul_y[aparaemiento_order[i].n2], o_cross[i]);
+	*popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
+	*popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
     }
 }
 
-float genetic(float (*f)(float, float), pair limit_x, pair limit_y, int n)
+float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
 {
     srand48(time(NULL));
 
@@ -120,8 +122,8 @@ float genetic(float (*f)(float, float), pair limit_x, pair limit_y, int n)
 
 int main()
 {
-    pair lx = {10.2f, 50.4f};
-    pair ly = {60.1f, 90.2f};
+    pair_f lx = {10.2f, 50.4f};
+    pair_f ly = {60.1f, 90.2f};
 
     genetic(f_p, lx, ly, 5);
 }
