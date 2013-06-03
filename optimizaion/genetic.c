@@ -26,9 +26,9 @@ typedef struct __pair__i__
     int n2;
 } pair_i;
 
-float f_p(float x, float y)
+float function(float x, float y)
 {
-    return x * y;
+    return 20 * x*x + y*y - 10 * (cos(2 * M_PI * x) + cos(2 * M_PI * y));
 }
 
 int index_max(float * arr)
@@ -114,6 +114,10 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
         popul_y[i] = (w_y * drand48()) + limit_y.n1;
     }
 
+    for(i = 0 ; i < N; i++)
+        printf("popul: (%.4f, %.4f)\n", popul_x[i], popul_y[i]);
+    puts("");
+
     for(ii = 0; ii < n; ii++)
     {
         for(i = 0; i < N; i++)
@@ -134,8 +138,8 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
 
 int main()
 {
-    pair_f lx = {10.2f, 50.4f};
-    pair_f ly = {60.1f, 90.2f};
+    pair_f lx = {-4.0f, 4.0f};
+    pair_f ly = {-4.0f, 4.0f};
 
-    genetic(f_p, lx, ly, 5);
+    genetic(function, lx, ly, 50);
 }
