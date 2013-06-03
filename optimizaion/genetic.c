@@ -6,8 +6,8 @@
 #include <math.h>
 
 #define N	4
-#define N_CROSS		10
-#define N_CROSS_D	10.0
+#define N_CROSS		10000
+#define N_CROSS_D	10000.0
 
 #define debug()		printf("%d - %s\n", __LINE__, __FILE__)
 #define print_farr(X)	for(i = 0; i < N; i++) printf("%f\n", (X)[i])
@@ -28,7 +28,7 @@ typedef struct __pair__i__
 
 float function(float x, float y)
 {
-    return 20 * x*x + y*y - 10 * (cos(2 * M_PI * x) + cos(2 * M_PI * y));
+    return 20 + x*x + y*y - 10 * (cos(2 * M_PI * x) + cos(2 * M_PI * y));
 }
 
 int index_max(float * arr)
@@ -88,6 +88,7 @@ void new_population(float * popul_x, float * popul_y, float * prob)
     o_cross[2] = rand() % 32;
     o_cross[3] = rand() % 32;
 
+    printf("o_cross: %d - %d - %d - %d\n", o_cross[0], o_cross[1], o_cross[2], o_cross[3]);
     for(i = 0; i < N; i++)
     {
         popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
@@ -115,7 +116,7 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
     }
 
     for(i = 0 ; i < N; i++)
-        printf("popul: (%.4f, %.4f)\n", popul_x[i], popul_y[i]);
+        printf("popul 0: (%.4f, %.4f) =\t%.4f\n", popul_x[i], popul_y[i], f(popul_x[i], popul_y[i]));
     puts("");
 
     for(ii = 0; ii < n; ii++)
@@ -130,16 +131,17 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
             p[i] /= p_total;
 
         new_population(popul_x, popul_y, p);
-    }
 
-    for(i = 0 ; i < N; i++)
-        printf("popul: (%.4f, %.4f)\n", popul_x[i], popul_y[i]);
+	puts("");
+	for(i = 0 ; i < N; i++)
+	    printf("popul %d: (%.4f, %.4f) = \t%.4f\n", ii, popul_x[i], popul_y[i], f(popul_x[i], popul_y[i]));
+    }
 }
 
 int main()
 {
-    pair_f lx = {-4.0f, 4.0f};
-    pair_f ly = {-4.0f, 4.0f};
+    pair_f lx = {0.0f, 2.0f};
+    pair_f ly = {0.0f, 2.0f};
 
     genetic(function, lx, ly, 50);
 }
