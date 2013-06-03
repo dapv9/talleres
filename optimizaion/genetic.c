@@ -51,7 +51,7 @@ double cross(double n1, double n2, int cross)
     return (((int)(n1*N_CROSS) & ~a) | ((int)(n2*N_CROSS) & a)) / N_CROSS_D;
 }
 
-float new_population(float **popul_x, float **popul_y, float * prob)
+void new_population(float **popul_x, float **popul_y, float * prob)
 {
     int i, i_max = 0;
     int n_popul[4];
@@ -87,8 +87,8 @@ float new_population(float **popul_x, float **popul_y, float * prob)
 
     for(i = 0; i < N; i++)
     {
-	*popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
-	*popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
+        *popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
+        *popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
     }
 }
 
@@ -96,7 +96,8 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
 {
     srand48(time(NULL));
 
-    int i;
+    register int i;
+    int ii;
     float w_x = limit_x.n2 - limit_x.n1;
     float w_y = limit_y.n2 - limit_y.n1;
     float popul_x[4];
@@ -110,14 +111,22 @@ float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
         popul_y[i] = (w_y * drand48()) + limit_y.n1;
     }
 
-    for(i = 0; i < N; i++)
+    for(ii = 0; ii < n; ii++)
     {
-        p[i] = f(popul_x[i], popul_y[i]);
-        p_total += p[i];
+        for(i = 0; i < N; i++)
+        {
+            p[i] = f(popul_x[i], popul_y[i]);
+            p_total += p[i];
+        }
+
+        for(i = 0; i < N; i++)
+            p[i] /= p_total;
+
+        new_population((float**)&popul_x, (float**)&popul_y, p);
     }
 
-    for(i = 0; i < N; i++)
-        p[i] /= p_total;
+    for(i = 0 ; i < N; i++)
+        printf("popul: (%.4f, %.4f)\n", popul_x[i], popul_y[i]);
 }
 
 int main()
