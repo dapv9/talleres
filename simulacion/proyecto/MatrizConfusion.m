@@ -1,12 +1,10 @@
-function [ Conf , Eficiencia] = MatrizConfusion(Ytest,Yestimado)
-    Conf = zeros(length(Ytest),length(Yestimado));
-    for i=1:length(Ytest)
-        for j=1:length(Yestimado)
-            if Ytest(i) == Yestimado(i)
-                Conf(i,j) = Conf(i,j) + 1;
-            end
-        end
+function [ Conf , Eficiencia] = MatrizConfusion(Ytest, Yestimado)
+    Conf = zeros(5, 5);
+
+    for i = 1:length(Ytest)
+        Conf(Ytest(i), Yestimado(i)) = Conf(Ytest(i), Yestimado(i)) + 1;
     end
+
     %Halla la eficiencia del programa
     %*Contador = 0;
         
@@ -20,4 +18,3 @@ function [ Conf , Eficiencia] = MatrizConfusion(Ytest,Yestimado)
     %
     Eficiencia = sum(diag(Conf))/(sum(sum(Conf)));
 end
-
