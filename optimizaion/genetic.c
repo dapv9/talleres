@@ -5,7 +5,7 @@
 #include <time.h>
 #include <math.h>
 
-#define N		8
+#define N		20
 #define N_FLOAT		10000
 #define N_FLOAT_D	10000.0
 #define N_CROSS		16
@@ -175,5 +175,5 @@ int main()
     pair_f lx = {0.0, 2.0};
     pair_f ly = {0.0, 2.0};
 
-    genetic(function, lx, ly, 20);
+    genetic(function, lx, ly, 100000);
 }
