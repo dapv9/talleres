@@ -10,7 +10,7 @@
 #include <time.h>
 #include <math.h>
 
-#define N		20
+// #define N		20
 #define N_FLOAT		10000
 #define N_FLOAT_D	10000.0
 #define N_CROSS		16
@@ -20,6 +20,7 @@
 #define print_farr(X)	for(i = 0; i < N; i++) printf("%f\n", (X)[i])
 #define print_iarr(X)	for(i = 0; i < N; i++) printf("%d\n", (X)[i])
 
+int N;
 
 typedef struct __pair__f__
 {
@@ -202,6 +203,8 @@ int main()
 
     printf("Número de iteracciones: ");
     scanf("%d", &n);
+    printf("Tamaño de la población: ");
+    scanf("%d", &N);
 
     printf("Mínimo de la función: %.4f\n", genetic(function, lx, ly, n));
 
