@@ -5,7 +5,7 @@
 #include <time.h>
 #include <math.h>
 
-#define N	4
+#define N		8
 #define N_FLOAT		10000
 #define N_FLOAT_D	10000.0
 #define N_CROSS		16
@@ -13,8 +13,8 @@
 
 #define debug()		printf("%d - %s\n", __LINE__, __FILE__)
 #define print_farr(X)	for(i = 0; i < N; i++) printf("%f\n", (X)[i])
+#define print_iarr(X)	for(i = 0; i < N; i++) printf("%d\n", (X)[i])
 
-// double drand48();
 
 typedef struct __pair__f__
 {
@@ -56,9 +56,34 @@ double cross(double n1, double n2, int cross)
     return (((int)(n1*N_FLOAT) & ~a) | ((int)(n2*N_FLOAT) & a)) / N_FLOAT_D;
 }
 
+void mat_order(pair_i * mating_order)
+{
+    int i;
+
+    for(i = 0; i < (N/2); i++)
+    {
+        mating_order[i].n1 = i;
+        mating_order[i].n2 = N - 1 - i;
+    }
+    for(i = N/2; i < N; i++)
+    {
+        if(i < (3*N/4))
+        {
+            mating_order[i].n1 = i-N/2;
+            mating_order[i].n2 = i-N/2 + 2;
+        }
+        else
+        {
+            mating_order[i].n1 = i-2;
+            mating_order[i].n2 = i;
+        }
+    }
+}
+
 void new_population(double * popul_x, double * popul_y, double * prob)
 {
-    int i, i_min = 0;
+    register int i;
+    int i_min = 0;
     int n_popul[N];
     double n_popul_x[N];
     double n_popul_y[N];
@@ -67,14 +92,13 @@ void new_population(double * popul_x, double * popul_y, double * prob)
     // hago una copia del vector de probabilidad
     memcpy(prob_cpy, prob, sizeof(double)*N);
 
-#warning "algoritmo de más"
     // encuentro la probabilidad menor dentro del arreglo.
-    n_popul[0] = n_popul[1] = i_min = index_min(prob_cpy);
-    prob_cpy[i_min] = INF;
-
-    n_popul[2] = index_min(prob_cpy);
-    prob_cpy[i_min] = INF;
-    n_popul[3] = index_min(prob_cpy);
+    n_popul[0] = index_min(prob_cpy);
+    for(i = 1; i < N; i++)
+    {
+        n_popul[i] = i_min = index_min(prob_cpy);
+        prob_cpy[i_min] = INF;
+    }
 
     for(i = 0; i < N; i++)
     {
@@ -82,19 +106,25 @@ void new_population(double * popul_x, double * popul_y, double * prob)
         n_popul_y[i] = popul_y[n_popul[i]];
     }
 
-#warning "algoritmo de más"
-    pair_i mating_order[N] = {0, 2, 1, 2, 2, 3, 0, 3};
+    // pair_i mating_order[N] = {0, 3, 1, 2, 0, 2, 1, 3};
+    pair_i mating_order[N];
+    mat_order(mating_order);
+
+//     puts("");
+//     for(i = 0; i < N; i++)
+// 	printf("%d - %d | %d\n", i, mating_order[i].n1, mating_order[i].n2);
+//     puts("");
 
     int o_cross[N];
     for(i = 0; i < N; i++)
         o_cross[i] = N_CROSS - (rand() % N_CROSS);
 
-    printf("o_cross: %d - %d - %d - %d\n", o_cross[0], o_cross[1], o_cross[2], o_cross[3]);
     for(i = 0; i < N; i++)
     {
         popul_x[i] = cross(n_popul_x[mating_order[i].n1], n_popul_x[mating_order[i].n2], o_cross[i]);
         popul_y[i] = cross(n_popul_y[mating_order[i].n1], n_popul_y[mating_order[i].n2], o_cross[i]);
     }
+    debug();
 }
 
 double genetic(double (*f)(double, double), pair_f limit_x, pair_f limit_y, int n)
@@ -145,5 +175,5 @@ int main()
     pair_f lx = {0.0, 2.0};
     pair_f ly = {0.0, 2.0};
 
-    genetic(function, lx, ly, 10);
+    genetic(function, lx, ly, 20);
 }
