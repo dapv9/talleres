@@ -206,7 +206,7 @@ int main()
     printf("Tamaño de la población: ");
     scanf("%d", &N);
 
-    printf("Mínimo de la función: %.4f\n", genetic(function, lx, ly, n));
+    printf("\nMínimo de la función: %.4f\n", genetic(function, lx, ly, n));
 
     return 0;
 }
