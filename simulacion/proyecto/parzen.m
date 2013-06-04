@@ -3,7 +3,8 @@ function [yestimado, ytest] = parzen(direccion_bd, h)
 
     ytest = zeros(25, 1);
     yestimado = zeros(25, 1);
-    xtest_d = {};
+    % todos los xtest
+    xtest_c = zeros(25, 32);
     xtrain_d = {};
 %      xtest_completa = zeros(25, 32);
 
@@ -19,102 +20,44 @@ function [yestimado, ytest] = parzen(direccion_bd, h)
         [xtrain, mu, sigma] = zscore(xtrain);
         xtest = (xtest-repmat(mu,size(xtest,1),1))./repmat(sigma,size(xtest,1),1);
 
-        xtest_d{i} = xtest;
         xtrain_d{i} = xtrain;
 
         for j = 1:5
+            xtest_c((i-1)*5 + j,:) = xtest(j, :);
             ytest((i-1)*5 + j) = i;
         end
 
     end
 
 
-    % ciclo para los géneros
-    for i = 1:5
-        xtest = xtest_d{i};
+    % ciclo para los xtest
+    for i = 1:25
+        xtest = xtest_c(i,:);
 
-        % ciclo para las canciones
+        f = zeros(5, 1);
+        % ciclo para encontrar la probabilidad de que sea de cada genero
         for j = 1:5
+            xtrain = xtrain_d{j};
 
-	    f = zeros(5, 1);
-	    % ciclo para encontrar la probabilidad de que sea de cada genero
-	    for ii = 1:5
-		xtrain = xtrain_d{ii};
-
-		% ciclo para el calculo de la sumatoria de los kernel
-		suma_k = 0;
-		for w = 1:45
-		    suma_k = suma_k + kernel((xtrain(w) - xtest) / h);
-		end
-
-		f(ii) = (1/(45 * h)) * suma_k;
-	    end
-
-	    maximo = f(1);
-            ind_maximo = 1;
-
-            for w = 2:5
-                if f(w) > maximo
-                    maximo = f(w);
-                    ind_maximo = w;
-                end
+            % ciclo para el calculo de la sumatoria de los kernel
+            suma_k = 0;
+            for w = 1:45
+                suma_k = suma_k + kernel((xtrain(w, :) - xtest) / h);
             end
 
-            yestimado((i-1)*5 + j, 1) = ind_maximo;
-            (i-1)*5 + j
-
+            f(j) = (1/(45 * h)) * suma_k;
         end
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-%          f = zeros(5, 1);
-%  
-%          for j = 1:5
-%              suma = 0;
-%  
-%              for k = 1:45
-%                  xtrain = xtrain_matriz(k,:,j);
-%                  u = (xtrain - xtest)/h;
-%                  expon = (-1/2)*(u*u');
-%                  nucleo = (1/2)*exp(expon);
-%                  suma = suma + nucleo;
-%              end
-%  
-%              f(j) = (1/(45*h))*suma;
-%          end
-%  
-%          maximo = f(1);
-%          ind_maximo = 1;
-%  
-%          for k = 2 : 5
-%              if f(k) > maximo
-%                  maximo = f(k);
-%                  ind_maximo = k;
-%              end
-%          end
-%          yestimado(i) = ind_maximo;
+
+        maximo = f(1);
+        ind_maximo = 1;
+
+        for w = 2:5
+            if f(w) > maximo
+                maximo = f(w);
+                ind_maximo = w;
+            end
+        end
+
+        yestimado(i, 1) = ind_maximo;
     end
 end
