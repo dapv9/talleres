@@ -145,6 +145,7 @@ double genetic(double (*f)(double, double), pair_f limit_x, pair_f limit_y, int 
     double popul_y[N];
     double p_total = 0.0;
     double p[N];
+    double ret = 0.0;
 
     for(i = 0; i < N; i++)
     {
@@ -173,12 +174,36 @@ double genetic(double (*f)(double, double), pair_f limit_x, pair_f limit_y, int 
         for(i = 0 ; i < N; i++)
             printf("popul %d: (%.4f, %.4f) = \t%.4f\n", ii, popul_x[i], popul_y[i], f(popul_x[i], popul_y[i]));
     }
+
+    // Calculamos el promedio de la úlima población y retornamos el resultado.
+    for(i = 0 ; i < N; i++)
+        ret += f(popul_x[i], popul_y[i]);
+
+    return ret / (1.0 * N);
 }
 
 int main()
 {
+    int n;
     pair_f lx = {0.0, 2.0};
     pair_f ly = {0.0, 2.0};
 
-    genetic(function, lx, ly, 100000);
+    puts("Intervalo de la variable 1.");
+    printf("Ingrese X1: ");
+    scanf("%f", &lx.n1);
+    printf("Ingrese X2: ");
+    scanf("%f", &lx.n2);
+
+    puts("Intervalo de la variable 2.");
+    printf("Ingrese Y1: ");
+    scanf("%f", &ly.n1);
+    printf("Ingrese Y2: ");
+    scanf("%f", &ly.n2);
+
+    printf("Número de iteracciones: ");
+    scanf("%d", &n);
+
+    printf("Mínimo de la función: %.4f\n", genetic(function, lx, ly, n));
+
+    return 0;
 }
