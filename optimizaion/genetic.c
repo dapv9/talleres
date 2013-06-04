@@ -1,4 +1,11 @@
 
+
+/**
+ * Author: Sigifredo Escobar Gómez
+ * Email: sigifredo89@gmail.com
+ * Last update: Tue, 04 Jun 2013 00:17:54 -0500
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
