@@ -6,8 +6,9 @@
 #include <math.h>
 
 #define N	4
-#define N_CROSS		10000
-#define N_CROSS_D	10000.0
+#define N_FLOAT		10000
+#define N_FLOAT_D	10000.0
+#define N_CROSS		16
 
 #define debug()		printf("%d - %s\n", __LINE__, __FILE__)
 #define print_farr(X)	for(i = 0; i < N; i++) printf("%f\n", (X)[i])
@@ -49,9 +50,9 @@ double cross(double n1, double n2, int cross)
     for(i = 0; i < cross; i++)
         a = (a << 1) | 1;
 
-    // printf("cross: %d\ta: %d\tn1*10: %d\tn2*10: %d\n", cross, a, (int)(n1*N_CROSS), (int)(n2*N_CROSS));
+    // printf("cross: %d\ta: %d\tn1*10: %d\tn2*10: %d\n", cross, a, (int)(n1*N_FLOAT), (int)(n2*N_FLOAT));
 
-    return (((int)(n1*N_CROSS) & ~a) | ((int)(n2*N_CROSS) & a)) / N_CROSS_D;
+    return (((int)(n1*N_FLOAT) & ~a) | ((int)(n2*N_FLOAT) & a)) / N_FLOAT_D;
 }
 
 void new_population(float * popul_x, float * popul_y, float * prob)
@@ -79,14 +80,13 @@ void new_population(float * popul_x, float * popul_y, float * prob)
         n_popul_y[i] = popul_y[n_popul[i]];
     }
 
-    pair_i mating_order[4] = {0, 1, 1, 2, 2, 3, 0, 3};
+    pair_i mating_order[4] = {0, 2, 1, 2, 2, 3, 1, 3};
 
     int o_cross[4];
-    srand(time(NULL));
-    o_cross[0] = rand() % 32;
-    o_cross[1] = rand() % 32;
-    o_cross[2] = rand() % 32;
-    o_cross[3] = rand() % 32;
+    o_cross[0] = N_CROSS - (rand() % N_CROSS);
+    o_cross[1] = N_CROSS - (rand() % N_CROSS);
+    o_cross[2] = N_CROSS - (rand() % N_CROSS);
+    o_cross[3] = N_CROSS - (rand() % N_CROSS);
 
     printf("o_cross: %d - %d - %d - %d\n", o_cross[0], o_cross[1], o_cross[2], o_cross[3]);
     for(i = 0; i < N; i++)
@@ -98,6 +98,7 @@ void new_population(float * popul_x, float * popul_y, float * prob)
 
 float genetic(float (*f)(float, float), pair_f limit_x, pair_f limit_y, int n)
 {
+    srand(time(NULL));
     srand48(time(NULL));
 
     register int i;
@@ -143,5 +144,5 @@ int main()
     pair_f lx = {0.0f, 2.0f};
     pair_f ly = {0.0f, 2.0f};
 
-    genetic(function, lx, ly, 50);
+    genetic(function, lx, ly, 10);
 }
