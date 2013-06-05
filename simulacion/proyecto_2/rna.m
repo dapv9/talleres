@@ -14,7 +14,7 @@ function [Error, IC] = rna(direccion_archivo)
     ErrorTest = zeros(1,Rept);
     TF = {'tansig', 'tansig'};
 
-%      for fold = 1:Rept
+    for fold = 1:Rept
         % Separación de los conjuntos de entrenamiento y validación
         vInd = randperm(Nd);
         Xtrain = X(vInd(1:Ntr),:);	% 140x32
@@ -33,28 +33,17 @@ function [Error, IC] = rna(direccion_archivo)
         view(mired);
         mired.trainParam.epochs = 50;
         mired.trainParam.goal = 0.01;
-        
         mired = train(mired, Xtrain', Ytrain');
 
         %----------------------------------------------------------------------
         %------------- Validación ---------------------------------------------
-%          Yest = ValidarGMM(Modelo,XtestN);
+        X
 
         %-----------------------------------------------------------------------
         %-------------- Cálculo del error --------------------------------------
-%          MatrizConfusion = zeros(Nc,Nc);
-%  
-%          for i=1:size(Xtest,1)
-%              MatrizConfusion(Yest(i),Ytest(i)) = MatrizConfusion(Yest(i),Ytest(i)) + 1;
-%          end
-%  
-%          ErrorTest(fold) = sum(diag(MatrizConfusion))/sum(sum(MatrizConfusion));
-%      end
+    end
 
     Error = 0;
     IC = 0;
-%      Error = mean(ErrorTest);
-%      IC = std(ErrorTest);
-%      strcat('El error obtenido fue = ', num2str(Error), '+-', num2str(IC))
 
 end
