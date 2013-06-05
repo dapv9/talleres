@@ -1,0 +1,22 @@
+Luego de correr el algoritmo 'fold', el cual corre 10 veces cada uno de los tres algoritmos de clasificación, obtenemos el siguiente resultado:
+
+Eficiencias
+Gauss:		0.436
+knn:		0.384
+parzen:		0.332
+
+Donde, KNN tiene 3 vecinos, y el tamaño de ventana en parzen es de 1.
+
+Probando KNN con 3, 6, y 9 vecinos estas son las eficiencias obtenidas:
+
+3: 0.384
+6: 0.344
+9: 0.340
+
+Podemos ver, que con 3 vecinos obtenemos una eficiencia mayor.
+
+Si probamos el algoritmo de parzen con 1, 3 y 5, estas son las eficiencias obtenidas:
+
+1: 0.332
+3: 
+5: 

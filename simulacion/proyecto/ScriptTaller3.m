@@ -6,10 +6,10 @@ function [Error, IC] = ScriptTaller3(direccion_archivo)
     X = Data(:,1:end-1);
     Y = Data(:,end);
     %--------------------------------------------------------------------------
-    Nd = size(X, 1); % Número de muestras en la base de datos
-    Ntr = ceil(Nd*0.7); % Número de muestras de entrenamiento
-    Nc = max(Y); %Número de clases
-    Rept = 50;
+    Nd = size(X, 1);		% Número de muestras en la base de datos
+    Ntr = ceil(Nd*0.7);		% Número de muestras de entrenamiento
+    Nc = max(Y);		% Número de clases
+    Rept = 10;
 
     ErrorTest = zeros(1,Rept);
     for fold = 1:Rept
@@ -46,6 +46,6 @@ function [Error, IC] = ScriptTaller3(direccion_archivo)
 
     Error = mean(ErrorTest);
     IC = std(ErrorTest);
-    strcat('El error obtenido fue = ', num2str(Error),'+-',num2str(IC))
+    strcat('El error obtenido fue = ', num2str(Error), '+-', num2str(IC))
 
 end

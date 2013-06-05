@@ -10,7 +10,6 @@ function [yestimado, ytest] = parzen(direccion_bd, h)
 
     for i = 1:length(archivos)
         archivo = archivos(i).name;
-        strcat(direccion_bd, archivo)
 
         M = dlmread(strcat(direccion_bd, archivo));
 

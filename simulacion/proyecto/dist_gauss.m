@@ -1,4 +1,4 @@
-function [yestimado, ytest] = gauss( direccion_bd )
+function [yestimado, ytest] = dist_gauss( direccion_bd )
 
     archivos = listar_archivos(direccion_bd);
     n_generos = length(archivos);
