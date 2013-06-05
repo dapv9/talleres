@@ -42,7 +42,7 @@ function [yestimado, ytest] = parzen(direccion_bd, h)
             % ciclo para el calculo de la sumatoria de los kernel
             suma_k = 0;
             for w = 1:45
-                suma_k = suma_k + kernel((xtrain(w, :) - xtest) / h);
+                suma_k = suma_k + kernel(norm(xtrain(w, :) - xtest) / h);
             end
 
             f(j) = (1/(45 * h)) * suma_k;
