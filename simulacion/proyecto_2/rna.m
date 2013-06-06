@@ -14,7 +14,7 @@ function [Error, IC] = rna(direccion_archivo)
     ErrorTest = zeros(1,Rept);
     TF = {'tansig', 'tansig'};
 
-    for fold = 1:Rept
+%      for fold = 1:Rept
         % Separación de los conjuntos de entrenamiento y validación
         vInd = randperm(Nd);
         Xtrain = X(vInd(1:Ntr),:);	% 140x32
@@ -37,11 +37,11 @@ function [Error, IC] = rna(direccion_archivo)
 
         %----------------------------------------------------------------------
         %------------- Validación ---------------------------------------------
-        X
+        Yest = sim(mired, XtestN');
 
         %-----------------------------------------------------------------------
         %-------------- Cálculo del error --------------------------------------
-    end
+%      end
 
     Error = 0;
     IC = 0;
