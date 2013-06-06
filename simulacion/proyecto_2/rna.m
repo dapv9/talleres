@@ -10,11 +10,11 @@ function [Error, IC] = rna(direccion_archivo)
     Nd = size(X, 1);		% Número de muestras en la base de datos
     Ntr = ceil(Nd*0.7);		% Número de muestras de entrenamiento
     Nc = 4;			% Número de clases
-    Rept = 10;
-    ErrorTest = zeros(1,Rept);
+    Rept = 1;
+    ErrorTest = zeros(1, Rept);
     TF = {'tansig', 'tansig'};
 
-%      for fold = 1:Rept
+    for fold = 1:Rept
         % Separación de los conjuntos de entrenamiento y validación
         vInd = randperm(Nd);
         Xtrain = X(vInd(1:Ntr),:);	% 140x32
@@ -39,9 +39,15 @@ function [Error, IC] = rna(direccion_archivo)
         %------------- Validación ---------------------------------------------
         Yest = sim(mired, XtestN');
 
+        YestC = zeros(1, length(Yest));
+
+        for i = 1:length(Yest)
+	    YestC(i) = obtenerClase(Yest(1, i), Yest(2, i));
+        end
+
         %-----------------------------------------------------------------------
         %-------------- Cálculo del error --------------------------------------
-%      end
+    end
 
     Error = 0;
     IC = 0;
