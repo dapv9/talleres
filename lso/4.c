@@ -1,8 +1,6 @@
 
 #include <syscall.h>
-#include <unistd.h>
 #include <stdio.h>
-#include <sys/types.h>
 
 int main()
 {
@@ -12,13 +10,13 @@ int main()
     /* SYS_getpid (func no. is 20) */
     /*-----------------------------*/
     ID1 = syscall(SYS_getpid);
-    printf("syscall(SYS_getpid)=%ld\n", ID1);
+    printf("syscall(%d)=%ld\n", SYS_getpid, ID1);
 
     /*-----------------------------*/
     /* "libc" wrapped system call  */
     /* SYS_getpid (Func No. is 20) */
     /*-----------------------------*/
     ID2 = getpid();
-    printf("getpid() %ld\n", ID2);
+    printf("getpid()=%ld\n", ID2);
 }
 
