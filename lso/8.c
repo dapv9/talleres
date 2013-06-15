@@ -22,6 +22,7 @@ int main()
         printf("PROCESO PADRE: Proceso hijo con PID %d creado\n", (int)pid_hijo);
     }
 
+    /* Esta linea será ejecutada por ambos procesos (padre e hijo) */
     printf("Fin del proceso cuyo hijo tiene un PID de %d\n", (int)pid_hijo);
 }
 
