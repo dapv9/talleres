@@ -4,7 +4,7 @@ clear all
 % Gráfica
 f = '1 + sin(x^2)';
 x = 0:0.01:2;
-y = func(x);
+y = eval(f);
 
 
 % Gráfica de la función completa
@@ -37,7 +37,7 @@ grid on
 % tabla de datos
 paso = 2.0/6.0;
 x = 0:paso:2;
-y = func(x);
+y = eval(f);
 
 % imprimimos la tabla
 disp(' ')

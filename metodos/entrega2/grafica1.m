@@ -6,8 +6,6 @@ f = '1 + sin(x.^2)';
 x = 0:0.01:2;
 y = eval(f);
 
-y
-
 
 % Gráfica de la función completa
 subplot(2, 1, 1);
