@@ -33,7 +33,6 @@ grid on
 
 
 
-
 % tabla de datos
 paso = 2.0/6.0;
 x = 0:paso:2;
