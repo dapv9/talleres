@@ -4,8 +4,12 @@ clear all
 % Función a evaluar
 f = '1 + sin(x.^2)';
 
+% Número de intervalos
+% 6 intervalos para 7 puntos
+n_i = 6.0
+
 % Calculamos el tamaño del paso
-h = 2.0/6.0;
+h = 2.0/n_i;
 
 % Encontramos los valores de X y Y
 x = 0:h:2;
