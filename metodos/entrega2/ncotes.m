@@ -1,6 +1,13 @@
 
+clear all
 
+% Función a evaluar
+f = '1 + sin(x.^2)';
+
+% Calculamos el tamaño del paso
 h = 2.0/6.0;
+
+% Encontramos los valores de X y Y
 x = 0:h:2;
 y = eval(f);
 
