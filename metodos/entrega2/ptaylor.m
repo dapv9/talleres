@@ -17,4 +17,26 @@ for i = 1:n
 end
 
 ec
-expand(sym(ec))
+st = expand(sym(ec))
+
+
+hold on
+
+x = 0:0.01:2;
+y = eval(sym(f));
+
+f_g = plot(x, y);
+
+y = eval(st);
+
+s_g = plot(x, y);
+set(s_g, 'color', 'r');
+
+
+title('Polinomio de Taylor');
+xlabel('x');
+ylabel('y');
+
+legend('Funcion original', 'Polinomio de Taylor');
+
+grid on
