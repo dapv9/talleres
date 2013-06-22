@@ -1,14 +1,4 @@
 clear all
-%  function [c] = icubica(x, y, W1, WN)
-    %intercu
-    %programa para efectuar interpolacion cubica por segmentos para datos
-    % no igualmente espaciados
-    % clear all
-    %Entrada de informacion
-%      x = input('vector de abscisas=');
-%      y = input('vector de ordenadas=');
-%      W1 = input('segunda derivada al principio=');
-%      WN = input('segunda derivada al final=');
 
 f = '1+sin(x.^2)';
 
@@ -98,9 +88,9 @@ end
 
 
 % calculamos la integral
-integral = 0;
-for i=1:n-1
-    integral = integral + c(i,1) * (x(i+1)^4-x(i)^4)/4+c(i,2)*(x(i+1)^3-x(i)^3)/3+c(i,3)*(x(i+1)^2-x(i)^2)/2+c(i,4)*(x(i+1)-x(i));
+I = 0;
+for i = 1:n-1
+    I = I + c(i,1) * (x(i+1)^4-x(i)^4)/4+c(i,2)*(x(i+1)^3-x(i)^3)/3+c(i,3)*(x(i+1)^2-x(i)^2)/2+c(i,4)*(x(i+1)-x(i));
 end
 
-integral
+I
