@@ -1,10 +1,13 @@
 clear all
 
+a = 0;
+b = 2;
+
 f = '1+sin(x.^2)';
 
 n = 7;
-paso = 2.0/(n - 1);
-x = 0:paso:2;
+paso = (b-a)/(n-1);
+x = 0:paso:2
 y = eval(f);
 
 % segunda derivada
@@ -76,6 +79,9 @@ end
 grid on
 
 plot (x, y, 'o')
+title('f(x) = 1 + sen(x^2); 0 <= x <= 2');
+xlabel('x');
+ylabel('y');
 hold off
 
 for j = 1:n-1
@@ -83,7 +89,7 @@ for j = 1:n-1
         s(i) = c(j, i);
     end
 
-    disp(strcat('p',num2str(j),'=',poly2str(s,'t')));
+    disp(strcat('p',num2str(j),' = ',poly2str(s,'t')));
 end
 
 
