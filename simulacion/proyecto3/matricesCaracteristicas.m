@@ -13,6 +13,5 @@ function [ Matriz ] = matricesCaracteristicas( directorio )
         % length(Matriz)
         % nombre
     end
-    
     % M = Matriz;
 end

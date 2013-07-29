@@ -1,6 +1,6 @@
 function [Media] = caracteristicasXcancion( y, Fs, nbits )
 
-    n = 33;
+    n = 34;
     %Algoritmo para sacar las características MFCC y LPCC de la canción
     m1 = mean(y(:,1));
 
@@ -17,18 +17,18 @@ function [Media] = caracteristicasXcancion( y, Fs, nbits )
     end
 
     s10 = Fs*10;
-    s25 = Fs*25;
+    s20 = Fs*20;
 
-    senal = b(s10:s25);
+    senal = b(s10:s20);
 
     v = enframe(senal, hamming(ceil(0.03*Fs)), ceil(0.03*Fs/2));
     w = zeros(size(v(:,1),1),n);
     for j = 1:size(v)
         c = lpc(v(j,:),19);
         c1 = melcepst(v(j,:),Fs,'R',12,length(v(j,:)),12,length(v(j,:)));
-        e = sum(v.^2);
-        v = 
-        w(j,:) = [c c1 e];
+        e = sum(v(j,:).^2);
+        [nn, z] = zerocros(v, 'b');
+        w(j,:) = [c c1 e length(z)];
     end
 
     for i = 1:n
