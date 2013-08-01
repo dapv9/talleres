@@ -2,7 +2,7 @@ function [ yestimado, ytest] = kvecinos(xtraind, xtestd, k)
 
     n_xtrain = length(xtraind) * length(xtraind{1});
     n_test = length(xtestd) * length(xtestd{1});
-    n_caracteristicas = length(xtraind{1}(1, :));
+    n_caracteristicas = length(xtraind{1}(1, :))
 
     ytest = zeros(n_test, 1);
     yestimado = zeros(n_test, 1);
@@ -14,9 +14,9 @@ function [ yestimado, ytest] = kvecinos(xtraind, xtestd, k)
         xtrain = xtraind{i};
         xtest = xtestd{i};
 
-        for j = 1:length(xtest)
-            xtest_completa((i-1)*length(xtest) + j, :) = xtest(j, :);
-            ytest((i-1)*length(xtest) + j, 1) = i;
+        for j = 1:15
+            xtest_completa((i-1)*15 + j, :) = xtest(j, :);
+            ytest((i-1)*15 + j, 1) = i;
         end
 
         for j = 1:length(xtrain)

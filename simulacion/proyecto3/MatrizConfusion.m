@@ -2,7 +2,9 @@ function [ Conf , Eficiencia] = MatrizConfusion(Ytest, Yestimado)
     Conf = zeros(max(Ytest), max(Ytest));
 
     for i = 1:length(Ytest)
+    if Ytest(i) ~= 0 && Yestimado(i)
         Conf(Ytest(i), Yestimado(i)) = Conf(Ytest(i), Yestimado(i)) + 1;
+        end
     end
 
     %Halla la eficiencia del programa
