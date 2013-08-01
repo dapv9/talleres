@@ -1,5 +1,7 @@
 function [Error, IC] = ScriptTaller3(direccion_archivo)
 
+    t = cputime;
+
     Data = dlmread(direccion_archivo);
 
     % Separación de características y variables a predecir
@@ -48,4 +50,5 @@ function [Error, IC] = ScriptTaller3(direccion_archivo)
     IC = std(ErrorTest);
     strcat('El error obtenido fue = ', num2str(Error), '+-', num2str(IC))
 
+    tiempo_ejecucion = cputime - t
 end
