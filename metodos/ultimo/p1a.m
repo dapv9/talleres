@@ -2,7 +2,7 @@
 
 clear all
 
-funcion = 'x*D2y+2*Dy-x*y=x'
+funcion = 'D2y=(x-2*Dy+x*y)/x';
 r1 = 'y(1)=0';
 r2 = 'y(3)=2';
 
