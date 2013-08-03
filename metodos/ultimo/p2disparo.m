@@ -5,12 +5,12 @@ n = 10;
 ti = 1;
 tf = 3;
 p1 = 1;
-p2 = 3;
-yi = 0;
-f = '';
+p2 = 2;
+yi = 3;
+f = '(4-3*t*x-2*y)/(t^2)';
 g = 'x';
 
-b = 2;
+b = 3;
 
 % disparo 1
 [T, X, Y, b1] = rk4(n, ti, tf, p1, yi, f, g);
