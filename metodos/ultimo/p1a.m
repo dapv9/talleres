@@ -8,10 +8,12 @@ r2 = 'y(3)=2';
 
 s = dsolve(funcion, r1, r2, 'x');
 
+s = simplify(s);
+
 pretty(s);
 
 syms x
-x = 0:0.01:2;
+x = 1:0.01:3;
 y = eval(s);
 
 %  f_g = ezplot(s);
