@@ -1,10 +1,6 @@
 
 clear all
 
-funcion_original = 'D2y=(x-2*Dy+x*y)/x';
-r1 = 'y(1)=0';
-r2 = 'y(3)=2';
-
 n = 10;
 ti = 1;
 tf = 3;
@@ -25,34 +21,10 @@ b = 2;
 p = p1 + ((b - b1)/(b2 - b1))*(p2 - p1);
 
 % disparo 3
-[T, X, Y, b2] = rk4(n, ti, tf, p, yi, f, g)
+[T, X, Y, b3] = rk4(n, ti, tf, p, yi, f, g);
 
 [T' X' Y']
 
 grid on
 hold on
-f_g = plot(T, X)
-
-s = dsolve(funcion_original, r1, r2, 'x');
-
-s = simplify(s);
-
-pretty(s);
-
-syms x
-x = 1:0.01:3;
-y = eval(s);
-
-%  f_g = ezplot(s);
-g_g = plot(x, y)
-
-set(f_g, 'color', 'b');
-set(g_g, 'color', 'm');
-
-legend('Metodo del disparo', 'Solucion por dsolve');
-
-%  title(funcion);
-%  xlabel('x');
-%  ylabel('y');
-
-%  grid on
+plot(T, X);
