@@ -1,0 +1,302 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1211/offlinedb">
+  <name>USUARIO</name>
+  <columns>
+    <column>
+      <name>CEDULA</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">10</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>NOMBRE</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">70</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>FECHA_NACIMIENTO</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>RH</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">3</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>DIRECCION</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">40</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>TELEFONO</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">7</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <name>CELULAR</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">10</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <name>CORREO_E</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">30</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>ESTRATO</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>EPS</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">20</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>PESO</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>FLOAT</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <name>ESTATURA</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>FLOAT</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <name>ESTADO</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+    <column>
+      <name>CARTERA</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">6</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>false</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <name>USUARIO_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>CEDULA</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>USUARIO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.NameBasedID">
+        <name>USUARIO_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>USUARIO</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>INDEX</type>
+      </indexID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>USUARIO_ESTADO_JUGADOR_FK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>ESTADO</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>USUARIO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <referenceID class="oracle.javatools.db.NameBasedID">
+        <name>ESTADO_JUGADOR_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>ESTADO_JUGADOR</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>USUARIO_CHK_CARTERA</name>
+      <checkCondition>cartera &gt;=0</checkCondition>
+      <enabled>true</enabled>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <name>USUARIO_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <expressionSource>CEDULA</expressionSource>
+          <orderType>ASC</orderType>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <schema>
+        <name>SCHEMA1</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>SCHEMA1</name>
+  </schema>
+</table>

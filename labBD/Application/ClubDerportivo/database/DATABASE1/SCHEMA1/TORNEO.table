@@ -1,0 +1,173 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<table xmlns="http://xmlns.oracle.com/jdeveloper/1211/offlinedb">
+  <name>TORNEO</name>
+  <columns>
+    <column>
+      <name>ID</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>NOMBRE_TORNEO</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">25</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>CATEGORIA</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">1</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>FECHA_INICIO</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>FECHA_CIERRE</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
+          <typeName>DATE</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+    <column>
+      <name>EQUIPO</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">15</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
+  </columns>
+  <constraints>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <name>TORNEO_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>ID</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>TORNEO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.NameBasedID">
+        <name>TORNEO_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>TORNEO</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>INDEX</type>
+      </indexID>
+    </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>TORNEO_EQUIPO_FK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>EQUIPO</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>TORNEO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <referenceID class="oracle.javatools.db.NameBasedID">
+        <name>ID_EQUIPO_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>EQUIPO</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>TORNEO_CHK_CATEGORIA</name>
+      <checkCondition>categoria &gt; 0 and categoria &lt; 5</checkCondition>
+      <enabled>true</enabled>
+    </constraint>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>TORNEO_CHK_DURACION</name>
+      <checkCondition>fecha_inicio &lt; fecha_cierre</checkCondition>
+      <enabled>true</enabled>
+    </constraint>
+  </constraints>
+  <indexes>
+    <indexe>
+      <name>TORNEO_PK</name>
+      <columnExpressions>
+        <columnExpression>
+          <expressionSource>ID</expressionSource>
+          <orderType>ASC</orderType>
+        </columnExpression>
+      </columnExpressions>
+      <indexType>UNIQUE</indexType>
+      <schema>
+        <name>SCHEMA1</name>
+      </schema>
+      <systemGenerated>true</systemGenerated>
+    </indexe>
+  </indexes>
+  <properties>
+    <entry>
+      <key>TableType</key>
+      <value class="oracle.javatools.db.Table$TableType">NORMAL</value>
+    </entry>
+  </properties>
+  <schema>
+    <name>SCHEMA1</name>
+  </schema>
+</table>
