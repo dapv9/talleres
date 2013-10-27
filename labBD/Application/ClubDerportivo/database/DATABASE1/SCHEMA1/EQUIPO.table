@@ -69,7 +69,7 @@
   </columns>
   <constraints>
     <constraint class="oracle.javatools.db.PKConstraint">
-      <name>ID_EQUIPO_PK</name>
+      <name>EQUIPO_PK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
           <name>ID</name>
@@ -81,20 +81,10 @@
           <schemaName>SCHEMA1</schemaName>
           <type>COLUMN</type>
         </columnID>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>NOMBRE</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>EQUIPO</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
       </columnIDs>
       <enabled>true</enabled>
       <indexID class="oracle.javatools.db.NameBasedID">
-        <name>EQUIPO_PK</name>
+        <name>ID_EQUIPO_PK</name>
         <parent class="oracle.javatools.db.NameBasedID">
           <name>EQUIPO</name>
           <schemaName>SCHEMA1</schemaName>
@@ -112,12 +102,8 @@
   </constraints>
   <indexes>
     <indexe>
-      <name>EQUIPO_PK</name>
+      <name>ID_EQUIPO_PK</name>
       <columnExpressions>
-        <columnExpression>
-          <expressionSource>NOMBRE</expressionSource>
-          <orderType>ASC</orderType>
-        </columnExpression>
         <columnExpression>
           <expressionSource>ID</expressionSource>
           <orderType>ASC</orderType>

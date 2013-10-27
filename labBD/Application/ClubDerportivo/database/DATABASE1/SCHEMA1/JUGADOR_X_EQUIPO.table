@@ -23,24 +23,8 @@
       <dataTypeUsage>
         <attributeValues>
           <entry>
-            <key>size</key>
-            <value class="java.lang.Long">15</value>
-          </entry>
-        </attributeValues>
-        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
-          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
-          <typeName>VARCHAR2</typeName>
-        </dataTypeID>
-      </dataTypeUsage>
-      <notNull>true</notNull>
-    </column>
-    <column>
-      <name>PARTICIPACION</name>
-      <dataTypeUsage>
-        <attributeValues>
-          <entry>
             <key>precision</key>
-            <value class="java.lang.String">1</value>
+            <value class="java.lang.String">2</value>
           </entry>
         </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
@@ -50,8 +34,60 @@
       </dataTypeUsage>
       <notNull>true</notNull>
     </column>
+    <column>
+      <name>TITULAR</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>size</key>
+            <value class="java.lang.Long">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <providerClass>oracle.javatools.db.ora.Oracle12c</providerClass>
+          <typeName>VARCHAR2</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+    </column>
   </columns>
   <constraints>
+    <constraint class="oracle.javatools.db.PKConstraint">
+      <name>JUGADOR_X_EQUIPO_PK</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>JUGADOR</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>JUGADOR_X_EQUIPO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>EQUIPO</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>JUGADOR_X_EQUIPO</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <indexID class="oracle.javatools.db.NameBasedID">
+        <name>JUGADOR_X_EQUIPO_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>JUGADOR_X_EQUIPO</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>INDEX</type>
+      </indexID>
+    </constraint>
     <constraint class="oracle.javatools.db.FKConstraint">
       <name>JUGADOR_X_EQUIPO_EQUIPO_FK</name>
       <columnIDs>
@@ -68,7 +104,7 @@
       </columnIDs>
       <enabled>true</enabled>
       <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>ID_EQUIPO_PK</name>
+        <name>EQUIPO_PK</name>
         <parent class="oracle.javatools.db.NameBasedID">
           <name>EQUIPO</name>
           <schemaName>SCHEMA1</schemaName>
@@ -79,32 +115,6 @@
       </referenceID>
     </constraint>
     <constraint class="oracle.javatools.db.FKConstraint">
-      <name>JUGADOR_X_EQUIPO_FK</name>
-      <columnIDs>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>PARTICIPACION</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>JUGADOR_X_EQUIPO</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-      </columnIDs>
-      <enabled>true</enabled>
-      <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>PARTICIPACION_PK</name>
-        <parent class="oracle.javatools.db.NameBasedID">
-          <name>PARTICIPACION</name>
-          <schemaName>SCHEMA1</schemaName>
-          <type>TABLE</type>
-        </parent>
-        <schemaName>SCHEMA1</schemaName>
-        <type>CONSTRAINT</type>
-      </referenceID>
-    </constraint>
-    <constraint class="oracle.javatools.db.FKConstraint">
       <name>JUGADOR_X_EQUIPO_USUARIO_FK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
@@ -130,31 +140,10 @@
         <type>CONSTRAINT</type>
       </referenceID>
     </constraint>
-    <constraint class="oracle.javatools.db.FKConstraint">
-      <name>JUGADOR_X_EQUIPO_USUARIO_FK</name>
-      <columnIDs>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>JUGADOR</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>JUGADOR_X_EQUIPO</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-      </columnIDs>
+    <constraint class="oracle.javatools.db.CheckConstraint">
+      <name>JUGADOR_X_EQUIPO_TITULAR_CHK</name>
+      <checkCondition>titular in (&apos;Si&apos;, &apos;No&apos;)</checkCondition>
       <enabled>true</enabled>
-      <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>USUARIO_PK</name>
-        <parent class="oracle.javatools.db.NameBasedID">
-          <name>USUARIO</name>
-          <schemaName>SCHEMA1</schemaName>
-          <type>TABLE</type>
-        </parent>
-        <schemaName>SCHEMA1</schemaName>
-        <type>CONSTRAINT</type>
-      </referenceID>
     </constraint>
   </constraints>
   <indexes>
@@ -174,7 +163,7 @@
       <schema>
         <name>SCHEMA1</name>
       </schema>
-      <systemGenerated>true</systemGenerated>
+      <systemGenerated>false</systemGenerated>
     </indexe>
   </indexes>
   <properties>

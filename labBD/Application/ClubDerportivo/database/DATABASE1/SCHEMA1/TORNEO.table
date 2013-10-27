@@ -5,6 +5,12 @@
     <column>
       <name>ID</name>
       <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">3</value>
+          </entry>
+        </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
           <providerClass>oracle.javatools.db.ora.OracleDatabaseImpl</providerClass>
           <typeName>NUMBER</typeName>
@@ -124,7 +130,7 @@
       </columnIDs>
       <enabled>true</enabled>
       <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>ID_EQUIPO_PK</name>
+        <name>EQUIPO_PK</name>
         <parent class="oracle.javatools.db.NameBasedID">
           <name>EQUIPO</name>
           <schemaName>SCHEMA1</schemaName>
